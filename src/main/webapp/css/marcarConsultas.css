@@ -1,0 +1,131 @@
+body {
+    background-image: url('https://www.alexdecarvalho.com.br/fr/wp-content/uploads/2014/09/clean-white-polygon-backgrounds-81.jpg');
+    color: #333;
+    background: #fafafa;
+    font-family: "Patua One", sans-serif;
+}
+.contact-form {
+    padding: 50px;
+    margin: 30px 0;
+}
+.contact-form h1 {
+    color: #19bc9d;
+    font-weight: bold;
+    margin: 0 0 15px;
+}
+.contact-form .form-control, .contact-form .btn {
+    min-height: 38px;
+    border-radius: 2px;
+}
+.contact-form .form-control:focus {
+    border-color: #19bc9d;
+}
+.contact-form .btn-primary, .contact-form .btn-primary:active {
+    color: #fff;
+    min-width: 150px;
+    font-size: 16px;
+    background: #19bc9d !important;
+    border: none;
+}
+.contact-form .btn-primary:hover {
+    background: #15a487 !important; 
+}
+.contact-form .btn i {
+    margin-right: 5px;
+}
+.contact-form label {
+    opacity: 0.7;
+}
+.contact-form textarea {
+    resize: vertical;
+}
+.hint-text {
+    font-size: 15px;
+    padding-bottom: 20px;
+    opacity: 0.6;
+}
+.navbar-header.col {
+    padding: 0 !important;
+  }
+.navbar {		
+    background: #fff;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-bottom: 1px solid #d6d6d6;
+    box-shadow: 0 0 4px rgba(0,0,0,.1);
+  }
+  .nav-link img {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    margin: -8px 0;
+    float: left;
+    margin-right: 10px;
+  }
+  .navbar .navbar-brand {
+    color: #555;
+    padding-left: 0;
+    padding-right: 50px;
+    font-family: 'Merienda One', sans-serif;
+  }
+  .navbar .navbar-brand i {
+    font-size: 20px;
+    margin-right: 5px;
+  }
+
+  .navbar .nav-item i {
+    font-size: 18px;
+  }
+  .navbar .dropdown-item i {
+    font-size: 16px;
+    min-width: 22px;
+  }
+  .navbar .nav-item.open > a {
+    background: none !important;
+  }
+  .navbar .dropdown-menu {
+    border-radius: 1px;
+    border-color: #e5e5e5;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  }
+  .navbar .dropdown-menu a {
+    color: #777;
+    padding: 8px 20px;
+    line-height: normal;
+  }
+  .navbar .dropdown-menu a:hover, .navbar .dropdown-menu a:active {
+    color: #333;
+  }	
+  .navbar .dropdown-item .material-icons {
+    font-size: 21px;
+    line-height: 16px;
+    vertical-align: middle;
+    margin-top: -2px;
+  }
+  .navbar .badge {
+    color: #fff;
+    background: #f44336;
+    font-size: 11px;
+    border-radius: 20px;
+    position: absolute;
+    min-width: 10px;
+    padding: 4px 6px 0;
+    min-height: 18px;
+    top: 5px;
+  }
+  .navbar a.notifications, .navbar a.messages {
+    position: relative;
+    margin-right: 10px;
+  }
+  .navbar a.messages {
+    margin-right: 20px;
+  }
+  .navbar a.notifications .badge {
+    margin-left: -8px;
+  }
+  .navbar a.messages .badge {
+    margin-left: -4px;
+  }	
+  .navbar .active a, .navbar .active a:hover, .navbar .active a:focus {
+    background: transparent !important;
+  }	

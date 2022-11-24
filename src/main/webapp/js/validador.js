@@ -1,0 +1,7 @@
+/**
+ * 
+ */
+ 
+ function validar(){
+	alert('teste')
+}

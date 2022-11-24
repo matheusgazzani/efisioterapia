@@ -1,0 +1,88 @@
+body {
+    background-image: url('https://www.alexdecarvalho.com.br/fr/wp-content/uploads/2014/09/clean-white-polygon-backgrounds-81.jpg');
+  }    
+
+.login {
+min-height: 100vh;
+}
+
+.bg-image {
+background-image: url('https://i.imgur.com/W7NP1Lw.png');
+background-size: 95%;
+background-position: center;
+}
+
+.login-heading {
+font-weight: 300;
+}
+
+.btn-login {
+font-size: 0.9rem;
+letter-spacing: 0.05rem;
+padding: 0.75rem 1rem;
+
+}
+
+body {
+	color: #999;
+	background: #fafafa;
+	font-family: 'Roboto', sans-serif;
+}
+.form-control {
+	min-height: 41px;
+	box-shadow: none;
+	border-color: #e6e6e6;
+}
+.form-control:focus {
+	border-color: #00c1c0;
+}
+.form-control, .btn {        
+	border-radius: 3px;
+}
+.container-a {
+	width: 700px;
+	margin: 0 auto;
+	padding: 30px 0;
+}
+.container-a h2 {
+	color: #333;
+	font-weight: bold;
+	margin: 0 0 25px;
+}
+.container-a form {
+	margin-bottom: 15px;
+	background: #fff;
+	border: 1px solid #f4f4f4;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 40px 50px;
+}
+.container-a .form-group {
+	margin-bottom: 20px;
+}
+.container-a label {
+	font-weight: normal;
+	font-size: 14px;
+}
+.container-a input[type="checkbox"] {
+	position: relative;
+	top: 1px;
+}    
+.container-a .btn, .signup-form .btn:active {        
+	font-size: 16px;
+	font-weight: bold;
+	background: #00c1c0 !important;
+	border: none;
+	min-width: 140px;
+}
+.container-a .btn, .signup-form .btn:active {        
+	font-size: 16px;
+	font-weight: bold;
+	background: #00c1c0 !important;
+	border: none;
+	min-width: 140px;
+}
+.container-a .btn:hover, .signup-form .btn:focus {
+	background: #00b3b3 !important;
+}
+
+
