@@ -116,11 +116,11 @@ public class ProfissionalDAO {
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
 				// SETAR AS VARIÁVEIS DO PROFISSIONALBEAN
-				profissional.setCod_fisioterapeuta(rs.getInt(1));
-				profissional.setNome(rs.getString(2));
-				profissional.setTelefone(rs.getString(3));
-				profissional.setDt_nascimento(rs.getString(4));
-				profissional.setEmail(rs.getString(5));
+				profissional.setCod_fisioterapeuta(rs.getInt(3));
+				profissional.setNome(rs.getString(5));
+				profissional.setTelefone(rs.getString(1));
+				profissional.setDt_nascimento(rs.getString(2));
+				profissional.setEmail(rs.getString(4));
 				profissional.setSexo(rs.getString(6));
 				profissional.setCrefito(rs.getString(7));
 				profissional.setEspecialidade(rs.getString(8));

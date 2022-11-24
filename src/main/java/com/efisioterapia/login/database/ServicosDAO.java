@@ -139,7 +139,9 @@ public class ServicosDAO {
 	/** CRUD UPDATE | EDITAR **/
 	/** SELECIONAR O SERVIÇO **/
 	public void selecionarServico(ServicoBean servico) {
-		String read2 = "SELECT * FROM servico WHERE cod_servico = ?";
+		String read2 = "SELECT servico.cod_servico, servico.nome,servico.valor, servico.descricao, fisioterapeuta.cod_fisioterapeuta ,fisioterapeuta.nome FROM Servico, Fisioterapeuta\r\n"
+				+ "WHERE Servico.cod_fisioterapeuta = ?"
+				+ "AND Fisioterapeuta.cod_fisioterapeuta = Servico.cod_fisioterapeuta";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read2);
@@ -152,6 +154,7 @@ public class ServicosDAO {
 				servico.setValor(rs.getFloat(3));
 				servico.setDescricao(rs.getString(4));
 				servico.setCod_fisioterapeuta(rs.getInt(5));
+				servico.setNome_fisioterapeuta(rs.getString(6));
 			}
 			con.close();
 		} catch (Exception e) {

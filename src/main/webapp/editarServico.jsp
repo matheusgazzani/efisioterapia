@@ -48,7 +48,7 @@
                     <label for="floatingInput">Descrição</label>
                   </div>
                   <div class="form-floating mb-3">
-                   	<input type="text" class="form-control" name="cod_fisioterapeuta" value="<%out.print(request.getAttribute("cod_fisioterapeuta"));%>"> 
+                   	<input type="text" class="form-control" name="nome_fisioterapeuta" value="<%out.print(request.getAttribute("nome_fisioterapeuta"));%>"> 
                     <label for="floatingInput">Profissional</label>
                   </div>                  <div class="d-grid">
                     <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Salvar</button>

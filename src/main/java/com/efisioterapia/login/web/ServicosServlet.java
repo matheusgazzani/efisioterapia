@@ -110,7 +110,7 @@ public class ServicosServlet extends HttpServlet {
 		request.setAttribute("nome", servico.getNome());
 		request.setAttribute("valor", servico.getValor());
 		request.setAttribute("descricao", servico.getDescricao());
-		request.setAttribute("cod_fisioterapeuta", servico.getCod_fisioterapeuta());
+		request.setAttribute("nome_fisioterapeuta", servico.getNome_fisioterapeuta());
 		// ENCAMINHAR AO DOCUMENTO EDITARSERVICO.JSP
 		RequestDispatcher rd = request.getRequestDispatcher("editarServico.jsp");
 		rd.forward(request, response);
