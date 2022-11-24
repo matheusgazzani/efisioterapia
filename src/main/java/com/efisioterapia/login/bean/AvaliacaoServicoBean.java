@@ -64,22 +64,19 @@ public class AvaliacaoServicoBean {
 	}
 	
 	/** CONSTRUTORES **/
-	public AvaliacaoServicoBean(Integer cod_avaliacao, Integer cod_servico, Integer quantidade, Float valor_total,
-			String fisioterapeuta, String paciente, String avaliacao, String servico) {
+	public AvaliacaoServicoBean(String fisioterapeuta, String paciente, String avaliacao, String servico, Integer quantidade) {
 		super();
-		this.cod_avaliacao = cod_avaliacao;
-		this.cod_servico = cod_servico;
 		this.quantidade = quantidade;
-		this.valor_total = valor_total;
 		this.fisioterapeuta = fisioterapeuta;
 		this.paciente = paciente;
 		this.avaliacao = avaliacao;
 		this.servico = servico;
 	}
-	
 	public AvaliacaoServicoBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
 	
 }

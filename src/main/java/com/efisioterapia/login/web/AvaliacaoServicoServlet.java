@@ -44,7 +44,6 @@ public class AvaliacaoServicoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// OBJETO QUE IRÁ RECEBER OS DADOS DO "AVALIACAOSERVICOBEAN"
 		ArrayList<AvaliacaoServicoBean> lista = avaliacaoServicoDAO.listarAvaliacaoServico();
-
 		// ENCAMINHAR A LISTA AO ARQUIVO 'Sessoes.jsp'
 		request.setAttribute("avaliacaoservicos", lista);
 		RequestDispatcher rd = request.getRequestDispatcher("Sessoes.jsp");

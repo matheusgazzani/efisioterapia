@@ -108,7 +108,7 @@ public class ProfissionalDAO {
 	/** CRUD UPDATE | EDITAR **/
 	// SELECIONAR O PROFISSIONAL
 	public void selecionarProfissional(ProfissionalBean profissional) {
-		String read2 = "SELECT * FROM profissional WHERE Cod_Profissional = ?";
+		String read2 = "SELECT * FROM fisioterapeuta WHERE Cod_Fisioterapeuta = ?";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read2);
@@ -134,7 +134,7 @@ public class ProfissionalDAO {
 	
 	// EDITAR O PROFISSIONAL
 	public void alterarProfissional(ProfissionalBean profissional) {
-		String create = "UPDATE profissional SET Nome=?,Telefone=?,DT_Nascimento=?,Email=?,Sexo=?,CREFITO=?,Especialidade=?,CPF=? WHERE cod_profissional = ?";
+		String create = "UPDATE fisioterapeuta SET Nome=?,Telefone=?,DT_Nascimento=?,Email=?,Sexo=?,CREFITO=?,Especialidade=?,CPF=? WHERE cod_fisioterapeuta = ?";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(create);
@@ -156,7 +156,7 @@ public class ProfissionalDAO {
 	
 	/** CRUD DELETE **/
 	public void deletarProfissional(ProfissionalBean profissional) {
-		String delete = "DELETE FROM profissional WHERE Cod_Profissional = ?;";
+		String delete = "DELETE FROM fisioterapeuta WHERE Cod_Fisioterapeuta = ?;";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(delete);

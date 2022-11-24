@@ -71,13 +71,8 @@ public class AvaliacaoServicoDAO {
 				String servico = rs.getString(4);
 				Integer quantidade = rs.getInt(5);
 				// POPULANDO O ARRAYLIST
-				avaliacaoservicos.add(new AvaliacaoServicoBean());
+				avaliacaoservicos.add(new AvaliacaoServicoBean(fisioterapeuta, paciente, avaliacao, servico, quantidade));
 				
-				System.out.println(fisioterapeuta);
-				System.out.println(paciente);
-				System.out.println(avaliacao);
-				System.out.println(servico);
-				System.out.println(quantidade);
 			}
 			// FECHANDO A CONEXÃO COM O BANCO DE DADOS
 			con.close();

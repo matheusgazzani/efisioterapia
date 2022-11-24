@@ -76,14 +76,20 @@ $(document).ready(function(){
                         </tr>
                     </thead>
                     <tbody>
-                        <%for (int i = 0; i < lista.size(); i++) { %>
+					<%for (int i = 0; i < lista.size(); i++) { %>
 						<tr>
 							<td><%=lista.get(i).getFisioterapeuta()%></td>
-							<td><a class="edit" href="selectServico?cod_servico=<%=lista.get(i).getCod_servico()%>"><i class="material-icons" data-toggle="tooltip">&#xE254;</i></a>
-							<a class="delete" href="javascript:confirmarServico(<%=lista.get(i).getCod_servico()%>)"><i class="material-icons" data-toggle="tooltip">&#xE872;</i></a>
+							<td><%=lista.get(i).getPaciente()%></td>
+							<td><%=lista.get(i).getAvaliacao()%></td>
+							<td><%=lista.get(i).getServico()%></td>
+							<td><%=lista.get(i).getQuantidade()%></td>
+							<td><a class="edit" href="#"><i class="material-icons" data-toggle="tooltip">&#xE254;</i></a>
+							<a class="delete" href="#"><i class="material-icons" data-toggle="tooltip">&#xE872;</i></a>
+							<a class="delete" href="#"><i class="material-icons" data-toggle="tooltip">&#xE871;</i></a>
+							</td>
 						</tr>
 					<%} %>
-                    </tbody>
+					</tbody>
                 </table>
             </div>
         </div>        
