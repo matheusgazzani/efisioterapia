@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Serviços | e-Fisioterapia</title>
+<title>Avaliação | e-Fisioterapia</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -29,38 +29,28 @@
               <div class="container-a">
   
                 <form action="updateServico">
-                <h3 class="login-heading mb-4">Editar serviço</h3>
-                <h6>Prezado(a), preencha corretamente todos os campos para editar um serviço.</h6>
+                <h3 class="login-heading mb-4">Editar avaliação</h3>
+                <h6>Prezado(a), preencha corretamente todos os campos para editar uma avaliação.</h6>
                 <div class="form-floating mb-3">
-                    <input readonly class="form-control" name="cod_servico" value="<%out.print(request.getAttribute("cod_servico"));%>">
+                    <input readonly class="form-control" name="cod_servico" value="">
                     <label for="floatingInput">ID</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input class="form-control" name="nome" value="<%out.print(request.getAttribute("nome"));%>">
-                    <label for="floatingInput">Nome do serviço</label>
+                    <input class="form-control" name="paciente" value="">
+                    <label for="floatingInput">Paciente</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input class="form-control" valor="valor" value="<%out.print(request.getAttribute("valor"));%>">
-                    <label for="floatingInput">Valor R$</label>
+                    <textarea rows="5" required class="form-control" name="ficha_avaliacao" value=""></textarea>
+                    <label for="floatingInput">Ficha de Avaliação</label>
                   </div>
-                  <div class="form-floating mb-3">
-                    <input class="form-control" name="descricao" value="<%out.print(request.getAttribute("descricao"));%>"> 
-                    <label for="floatingInput">Descrição</label>
+                 <div class="form-floating mb-3">
+                    <input type="date" class="form-control" name="dt_avaliacao" value="">
+                    <label for="floatingInput">Data de avaliação</label>
                   </div>
-                  <div class="form-floating mb-3">
-                   	<input readonly class="form-control" name="nome_fisioterapeuta" value="<%out.print(request.getAttribute("nome_fisioterapeuta"));%>"> 
-                    <label for="floatingInput">Profissional</label>
-                  </div>                  <div class="d-grid">
+                               
+                                
                   
-                  <div class="form-group">
-					<label class="mr-sm-2" for="inlineFormCustomSelect">Profissionais</label> 
-					<select type="number"
-						value="<c:out value='${servico.cod_fisioterapeuta}'/>" name="nome_fisioterapeuta">
-						<c:forEach var="profissional" items="${listprofissional}">
-						<option><c:out value="${listprofissional.nome}"/></option>
-						</c:forEach>
-						</select>
-				</div>
+            <div class="d-grid">
                     <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Salvar</button>
                   </div>
                   <div class="d-grid">

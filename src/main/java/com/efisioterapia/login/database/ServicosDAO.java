@@ -6,8 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.efisioterapia.login.bean.ServicoBean;
+import com.efisioterapia.login.bean.ProfissionalBean;
+
 
 public class ServicosDAO {
 	
@@ -84,6 +87,7 @@ public class ServicosDAO {
 		}
 	}
 	
+	/** OPÇÃO PARA SELECIONAR UM PROFISSIONAL | CHAVE ESTRANGEIRA **/
 	public void selecionarProfissional(ServicoBean servico) {
 		String profissional = "SELECT fisioterapeuta.nome FROM fisioterapeuta";
 		try {
@@ -99,6 +103,24 @@ public class ServicosDAO {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+	}
+	
+	/** LISTAR TODOS OS PROFISSIONAIS CADASTRADOS NO BD **/
+	public List<ProfissionalBean> listProfissional() {
+		List<ProfissionalBean> profissionais = new ArrayList<>();
+		String read = "SELECT fisioterapeuta.cod_fisioterapeuta, fisioterapeuta.nome FROM fisioterapeuta";
+		try (Connection connection = conectar();
+				PreparedStatement preparedStatement = connection.prepareStatement(read)) {
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				int id = rs.getInt("cod_fisioterapeuta");
+				String nome = rs.getString("nome_profissional");
+				profissionais.add(new ProfissionalBean(id, nome));
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		return profissionais;
 	}
 
 	/** CRUD READ **/

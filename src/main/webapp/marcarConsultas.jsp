@@ -54,17 +54,16 @@ body {
 					<h1>Avaliação</h1>
 					<p class="hint-text">Prezado(a), preencha este formulário para
 						registrar uma avaliação.</p>
-					<form action="consultasMarcadas.html" method="post">
+					<form action="inserirAvaliacao" method="post">
 						<div class="row">
 							<div class="col-sm-4">
 								<div class="form-group">
 									<label for="inputName">PACIENTE</label>
 									<select
-										class="form-control" id="inputName" name="profissional">
-										<option>Paciente 1</option>
-										<option>Paciente 2</option>
-										<option>Paciente 3</option>
-										<option>Paciente 4</option>
+										class="form-control" id="inputName" name="nome_paciente">
+										<option>Jaqueline Luiza Josefa Teixeira</option>
+										<option>Julia Heloise Brenda da Luz</option>
+										<option>Danilo Marcos Araújo</option>
 									</select>
 								</div>
 							</div>
@@ -73,7 +72,7 @@ body {
 									<div class="form-group row">
 				<label class="col-form-label col-4">Data de avaliação</label>
 				<div class="col-8">
-					<input type="date" class="form-control" name="nascimento"
+					<input type="date" class="form-control" name="dt_avaliacao"
 						required="true">
 				</div>
 			</div>
@@ -81,23 +80,22 @@ body {
 							</div>
 							<div class="col-sm-4">
 								<div class="form-group">
-									<label for="inputPhone">PROFISSIONAL</label>
+									<label for="inputPhone">FISIOTERAPEUTA</label>
 									<select
-										class="form-control" id="inputName" name="profissional">
-										<option>Profissional 1</option>
-										<option>Profissional 2</option>
-										<option>Profissional 3</option>
-										<option>Profissional 4</option>
+										class="form-control" id="inputName" name="nome_fisioterapeuta">
+										<option>Antônio Vasconcelos</option>
+										<option>Renan Levi Ramos</option>
+										<option>Augusto Caleb Pereira</option>
 									</select> 
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputMessage">Descrição do Paciente</label>
-							<textarea class="form-control" id="inputMessage" rows="5"
+							<textarea class="form-control" name="descricao" id="inputMessage" rows="5"
 								required></textarea>
 						</div>
-						<button type="submit" href="#" class="btn btn-primary">Registrar</button>
+						<button type="submit" class="btn btn-primary">Registrar</button>
 					</form>
 				</div>
 			</div>

@@ -31,6 +31,10 @@ public class ProfissionalBean {
 		this.cpf = cpf;
 	}
 	
+	public ProfissionalBean(int id, String nome2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Integer getCod_fisioterapeuta() {
 		return cod_fisioterapeuta;
 	}

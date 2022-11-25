@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,34 +12,10 @@ import com.efisioterapia.login.bean.AvaliacaoBean;
 import com.efisioterapia.login.bean.ProfissionalBean;
 
 public class AvaliacaoDAO {
-
-	/** PARÂMETROS DE CONEXÃO **/
-	/*
-	private String driver = "com.mysql.jdbc.Driver";
-	private String url = "jdbc:mysql://localhost:3306/efisioterapia?useTimezone=true&serverTimezone=UTC&useSSL=false";
-	private String user = "root";
-	private String password = "root";
-	*/
 	
 	private String jdbcURL = "jdbc:postgresql://localhost:5432/efisioterapiatest?useSSL=false";
 	private String jdbcUsername = "postgres";
 	private String jdbcPassword = "postgres";
-
-	/** MÉTODO DE CONEXÃO PADRÃO **/
-	/*
-	private Connection conectar() {
-		Connection con = null;
-
-		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, user, password);
-			return con;
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
-	*/
 	
 	/** MÉTODO DE CONEXÃO PADRÃO **/
 	private Connection conectar() {
@@ -65,25 +42,40 @@ public class AvaliacaoDAO {
 		}
 
 	}
+	
+	// ** CRUD - CREATE PEGAR O ID DO PROFISSIONAL **/
+		public int getProfissionalId(String nome_profissional) {
+			Integer idprofissional = 0;
+			String select = "SELECT fisioterapeuta.cod_fisioterapeuta, fisioterapeuta.nome AS \"NOME_PROFISSIONAL\" FROM fisioterapeuta WHERE fisioterapeuta.nome = ?";
+			try (Connection connection = conectar();
+					PreparedStatement preparedStatement = connection.prepareStatement(select)) {
+				preparedStatement.setString(1, nome_profissional);
+				System.out.println(nome_profissional);
+				ResultSet rs = preparedStatement.executeQuery();
+				while (rs.next()) {
+					idprofissional = rs.getInt("cod_fisioterapeuta");
+					System.out.println(idprofissional + "----------");
+					
+				}
+			} catch (SQLException e) {
+				System.out.println(e);
+			}
+			return idprofissional;
+		}
 
 	/** CRUD CREATE **/
-	/**
-	public void inserirProfissional(ProfissionalBean profissional) {
-		String query = "INSERT INTO profissional (Nome, Telefone, DT_Nascimento, Email, Sexo, CREFITO, Especialidade, CPF) VALUES (?,?,?,?,?,?,?,?)";
+	public void inserirAvaliacao(AvaliacaoBean avaliacao) {
+		String query = "INSERT INTO (dt_avaliacao, ficha_avaliacao, cod_paciente, cod_fisioterapeuta) VALUES (?,?,?,?)";
 		try {
 			// ABRIR CONEXÃO COM O BANCO DE DADOS
 			Connection con = conectar();
 			// PREPARAR A QUERY PARA EXECUTAR NO BANCO DE DADOS
 			PreparedStatement pst = con.prepareStatement(query);
 			// SUBSTITUIR OS PARÂMETROS PELO CONTEÚDOS DAS VARIÁVEIS
-			pst.setString(1, profissional.getNome());
-			pst.setString(2, profissional.getTelefone());
-			pst.setString(3, profissional.getDt_nascimento());
-			pst.setString(4, profissional.getEmail());
-			pst.setString(5, profissional.getSexo());
-			pst.setString(6, profissional.getCrefito());
-			pst.setString(7, profissional.getEspecialidade());
-			pst.setString(8, profissional.getCpf());
+			pst.setString(1, avaliacao.getDt_avaliacao());
+			pst.setString(2, avaliacao.getFicha_avaliacao());
+			pst.setInt(3, avaliacao.getCod_paciente());
+			pst.setInt(4, avaliacao.getCod_fisioterapeuta());
 			// EXECUTAR A QUERY
 			pst.executeUpdate();
 			// ENCERRAR A CONEXÃO COM O BANCO DE DADOS
@@ -122,12 +114,6 @@ public class AvaliacaoDAO {
 				String dt_avaliacao = rs.getString(5);
 				// POPULANDO O ARRAYLIST
 				avaliacoes.add(new AvaliacaoBean(cod_avaliacao, nome_fisioterapeuta, nome_paciente, ficha_avaliacao, dt_avaliacao, cod_avaliacao, cod_avaliacao));
-				
-				System.out.println(cod_avaliacao);
-				System.out.println(nome_fisioterapeuta);
-				System.out.println(nome_paciente);
-				System.out.println(ficha_avaliacao);
-				System.out.println(dt_avaliacao);
 			}
 			// FECHANDO A CONEXÃO COM O BANCO DE DADOS
 			con.close();

@@ -2,6 +2,7 @@ package com.efisioterapia.login.web;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.efisioterapia.login.bean.ServicoBean;
 import com.efisioterapia.login.database.ServicosDAO;
+import com.efisioterapia.login.bean.ProfissionalBean;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -54,7 +56,17 @@ public class ServicosServlet extends HttpServlet {
 		}
 
 	}
-
+	
+	/** LISTAR TODOS OS PROFISSIONAIS CADASTRADOS **/
+	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		List<ProfissionalBean> listprofissional = servicosDao.listProfissional();
+		request.setAttribute("profissionais", listprofissional);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("editarServico.jsp");
+		dispatcher.forward(request, response);
+		System.out.println(listprofissional);
+	}
+	
 	/** NOVO SERVIÇO **/
 	protected void novoServico(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
