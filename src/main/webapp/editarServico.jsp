@@ -32,11 +32,11 @@
                 <h3 class="login-heading mb-4">Editar serviço</h3>
                 <h6>Prezado(a), preencha corretamente todos os campos para editar um serviço.</h6>
                 <div class="form-floating mb-3">
-                    <input readonly type="number" class="form-control" name="cod_servico" value="<%out.print(request.getAttribute("cod_servico"));%>">
+                    <input readonly class="form-control" name="cod_servico" value="<%out.print(request.getAttribute("cod_servico"));%>">
                     <label for="floatingInput">ID</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="nome" value="<%out.print(request.getAttribute("nome"));%>">
+                    <input class="form-control" name="nome" value="<%out.print(request.getAttribute("nome"));%>">
                     <label for="floatingInput">Nome do serviço</label>
                   </div>
                   <div class="form-floating mb-3">
@@ -44,11 +44,11 @@
                     <label for="floatingInput">Valor R$</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input type="text" class="form-control" name="descricao" value="<%out.print(request.getAttribute("descricao"));%>"> 
+                    <input class="form-control" name="descricao" value="<%out.print(request.getAttribute("descricao"));%>"> 
                     <label for="floatingInput">Descrição</label>
                   </div>
                   <div class="form-floating mb-3">
-                   	<input type="text" class="form-control" name="nome_fisioterapeuta" value="<%out.print(request.getAttribute("nome_fisioterapeuta"));%>"> 
+                   	<input readonly class="form-control" name="nome_fisioterapeuta" value="<%out.print(request.getAttribute("nome_fisioterapeuta"));%>"> 
                     <label for="floatingInput">Profissional</label>
                   </div>                  <div class="d-grid">
                     <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Salvar</button>

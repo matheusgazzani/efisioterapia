@@ -62,5 +62,10 @@ public class ServicoBean {
 	public void setNome_fisioterapeuta(String nome_fisioterapeuta) {
 		this.nome_fisioterapeuta = nome_fisioterapeuta;
 	}
+
+	public void setValor(String parameter) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

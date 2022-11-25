@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.efisioterapia.login.bean.PacienteBean;
 import com.efisioterapia.login.bean.ServicoBean;
 import com.efisioterapia.login.database.ServicosDAO;
 import com.itextpdf.text.Document;
@@ -122,16 +121,13 @@ public class ServicosServlet extends HttpServlet {
 		// SETAR AS VARIÁVEIS SERVICOBEAN
 		servico.setCod_servico(Integer.parseInt(request.getParameter("cod_servico")));
 		servico.setNome(request.getParameter("nome"));
-		float valor = Float.parseFloat((request.getParameter("valor")));
-		System.out.println(valor + "oiiii" );
 		servico.setDescricao(request.getParameter("descricao"));
-		servico.setCod_fisioterapeuta(Integer.parseInt((request.getParameter("cod_fisioterapeuta"))));
+		servico.setNome_fisioterapeuta(request.getParameter("nome_fisioterapeuta"));
 		// EXECUTAR O MÉTODO alterarServico
 		servicosDao.alterarServico(servico);
 		// REDIRECIONAR PARA O DOCUMENTO Servicos.jsp (COM ATUALIZAÇÕES DO BANCO
 		// DE DADOS)
 		response.sendRedirect("servicos");
-		System.out.println(valor + "oiiii" );
 	}
 
 	/** REMOVER SERVIÇO **/
