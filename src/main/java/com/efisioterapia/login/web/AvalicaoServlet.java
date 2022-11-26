@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.efisioterapia.login.bean.AvaliacaoBean;
 import com.efisioterapia.login.database.AvaliacaoDAO;
 
-@WebServlet(urlPatterns = { "/avaliacoes", "/inserirAvaliacao", "/deleteAvaliacao" })
+@WebServlet(urlPatterns = { "/avaliacoes", "/inserirAvaliacao", "/deleteAvaliacao", "/selectAvaliacao" })
 public class AvalicaoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -45,13 +45,18 @@ public class AvalicaoServlet extends HttpServlet {
 			}
 		} else if (action.equals("/deleteAvaliacao")) {
 			removerAvaliacao(request, response);
+		} else if (action.equals("/selectAvaliacao")) {
+			editarAvaliacao(request, response);
 		} else {
 			response.sendRedirect("/index.jsp");
 		}
 	}
 
-	/** NOVA AVALIAÇÃO 
-	 * @throws ParseException **/
+	/**
+	 * NOVA AVALIAÇÃO
+	 * 
+	 * @throws ParseException
+	 **/
 	protected void novaAvaliacao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, ParseException {
 		// PARÂMETROS DO ARQUIVO "adicionarAvaliacao.jsp"
@@ -91,6 +96,27 @@ public class AvalicaoServlet extends HttpServlet {
 		// ENCAMINHAR A LISTA AO ARQUIVO 'exibirConsultas.jsp'
 		request.setAttribute("avaliacoes", lista);
 		RequestDispatcher rd = request.getRequestDispatcher("exibirConsultas.jsp");
+		rd.forward(request, response);
+	}
+
+	/** EDITAR SERVIÇO | SELECIONAR AVALIAÇÃO **/
+	protected void editarAvaliacao(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// RECEBIMENTO DO ID DO SERVICO QUE SERÁ EDITADO
+		Integer cod_avaliacao = Integer.parseInt(request.getParameter("cod_avaliacao"));
+		System.out.println(cod_avaliacao);
+		// SETAR A VARIÁVEL ServicoBean
+		avaliacao.setCod_avaliacao(cod_avaliacao);
+		// EXECUTAR O MÉTODO selecionarServico (DAO)
+		avaliacaoDAO.selecionarAvaliacao(avaliacao);
+		// SETAR OS ATRIBUTOS DO FORMULÁRIO COM O CONTEÚDO SERVICOBEAN
+		request.setAttribute("cod_avaliacao", avaliacao.getCod_avaliacao());
+		request.setAttribute("nome_paciente", avaliacao.getNome_paciente());
+		request.setAttribute("nome_fisioterapeuta", avaliacao.getNome_fisioterapeuta());
+		request.setAttribute("ficha_avaliacao", avaliacao.getFicha_avaliacao());
+		request.setAttribute("dt_avaliacao", avaliacao.getDt_avaliacao());
+		// ENCAMINHAR AO DOCUMENTO EDITARSERVICO.JSP
+		RequestDispatcher rd = request.getRequestDispatcher("editarAvaliacao.jsp");
 		rd.forward(request, response);
 	}
 

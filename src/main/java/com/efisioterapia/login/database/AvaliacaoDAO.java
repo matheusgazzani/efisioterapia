@@ -150,8 +150,11 @@ public class AvaliacaoDAO {
 	/**
 	/** CRUD UPDATE | EDITAR **/
 	// SELECIONAR AVALIAÇÃO
-	public void selecionarProfissional(AvaliacaoBean avaliacao) {
-		String read2 = "SELECT * FROM avaliacao WHERE Cod_Avaliacao = ?";
+	public void selecionarAvaliacao(AvaliacaoBean avaliacao) {
+		String read2 = "SELECT avaliacao.cod_avaliacao, avaliacao.dt_avaliacao, avaliacao.ficha_avaliacao, fisioterapeuta.nome, paciente.nome FROM Avaliacao, Fisioterapeuta, Paciente \r\n"
+				+ "WHERE Avaliacao.cod_avaliacao = ?"
+				+ "AND Fisioterapeuta.cod_fisioterapeuta = Avaliacao.cod_fisioterapeuta\r\n"
+				+ "AND Avaliacao.cod_paciente = Paciente.cod_paciente";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read2);
@@ -162,7 +165,8 @@ public class AvaliacaoDAO {
 				avaliacao.setCod_avaliacao(rs.getInt(1));
 				avaliacao.setDt_avaliacao(rs.getDate(2));
 				avaliacao.setFicha_avaliacao(rs.getString(3));
-				avaliacao.setDt_nascimento(rs.getDate(4));
+				avaliacao.setNome_fisioterapeuta(rs.getString(4));
+				avaliacao.setNome_paciente(rs.getString(5));
 			}
 			con.close();
 		} catch (Exception e) {

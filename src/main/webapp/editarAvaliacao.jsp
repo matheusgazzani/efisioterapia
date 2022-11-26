@@ -32,19 +32,23 @@
                 <h3 class="login-heading mb-4">Editar avaliação</h3>
                 <h6>Prezado(a), preencha corretamente todos os campos para editar uma avaliação.</h6>
                 <div class="form-floating mb-3">
-                    <input readonly class="form-control" name="cod_servico" value="">
+                    <input readonly class="form-control" name="cod_avaliacao" value="<%out.print(request.getAttribute("cod_avaliacao"));%>">
                     <label for="floatingInput">ID</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input class="form-control" name="paciente" value="">
+                    <input class="form-control" name="nome_paciente" value="<%out.print(request.getAttribute("nome_paciente"));%>">
                     <label for="floatingInput">Paciente</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <textarea rows="5" required class="form-control" name="ficha_avaliacao" value=""></textarea>
+                    <input class="form-control" name="nome_fisioterapeuta" value="<%out.print(request.getAttribute("nome_fisioterapeuta"));%>">
+                    <label for="floatingInput">Fisioterapeuta</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input rows="5" required class="form-control" name="ficha_avaliacao" value="<%out.print(request.getAttribute("ficha_avaliacao"));%>"></input>
                     <label for="floatingInput">Ficha de Avaliação</label>
                   </div>
                  <div class="form-floating mb-3">
-                    <input type="date" class="form-control" name="dt_avaliacao" value="">
+                    <input type="date" class="form-control" name="dt_avaliacao" value="<%out.print(request.getAttribute("dt_avaliacao"));%>">
                     <label for="floatingInput">Data de avaliação</label>
                   </div>
                                
