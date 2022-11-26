@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.efisioterapia.login.bean.PacienteBean;
 import com.efisioterapia.login.bean.ProfissionalBean;
@@ -43,7 +44,7 @@ public class ProfissionalDAO {
 
 	/** CRUD CREATE **/
 	public void inserirProfissional(ProfissionalBean profissional) {
-		String query = "INSERT INTO profissional (Nome, Telefone, DT_Nascimento, Email, Sexo, CREFITO, Especialidade, CPF) VALUES (?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO fisioterapeuta (Nome, Telefone, DT_Nascimento, Email, Sexo, CREFITO, Especialidade, CPF) VALUES (?,?,?,?,?,?,?,?)";
 		try {
 			// ABRIR CONEXÃO COM O BANCO DE DADOS
 			Connection con = conectar();
@@ -52,7 +53,8 @@ public class ProfissionalDAO {
 			// SUBSTITUIR OS PARÂMETROS PELO CONTEÚDOS DAS VARIÁVEIS
 			pst.setString(1, profissional.getNome());
 			pst.setString(2, profissional.getTelefone());
-			pst.setString(3, profissional.getDt_nascimento());
+			java.sql.Date data = new java.sql.Date(profissional.getDt_nascimento().getTime());
+			pst.setDate(3, data);
 			pst.setString(4, profissional.getEmail());
 			pst.setString(5, profissional.getSexo());
 			pst.setString(6, profissional.getCrefito());
@@ -87,7 +89,7 @@ public class ProfissionalDAO {
 				Integer cod_profissional = rs.getInt(3);
 				String nome = rs.getString(5);
 				String telefone = rs.getString(1);
-				String dt_nascimento = rs.getString(2);
+				Date dt_nascimento = rs.getDate(2);
 				String email = rs.getString(4);
 				String sexo = rs.getString(6);
 				String crefito = rs.getString(7);
@@ -119,7 +121,7 @@ public class ProfissionalDAO {
 				profissional.setCod_fisioterapeuta(rs.getInt(3));
 				profissional.setNome(rs.getString(5));
 				profissional.setTelefone(rs.getString(1));
-				profissional.setDt_nascimento(rs.getString(2));
+				profissional.setDt_nascimento(rs.getDate(2));
 				profissional.setEmail(rs.getString(4));
 				profissional.setSexo(rs.getString(6));
 				profissional.setCrefito(rs.getString(7));
@@ -140,7 +142,8 @@ public class ProfissionalDAO {
 			PreparedStatement pst = con.prepareStatement(create);
 			pst.setString(1, profissional.getNome());
 			pst.setString(2, profissional.getTelefone());
-			pst.setString(3, profissional.getDt_nascimento());
+			java.sql.Date data = new java.sql.Date(profissional.getDt_nascimento().getTime());
+			pst.setDate(3, data);
 			pst.setString(4, profissional.getEmail());
 			pst.setString(5, profissional.getSexo());
 			pst.setString(6, profissional.getCrefito());

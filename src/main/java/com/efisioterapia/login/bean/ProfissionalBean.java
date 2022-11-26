@@ -1,11 +1,13 @@
 package com.efisioterapia.login.bean;
 
+import java.util.Date;
+
 public class ProfissionalBean {
 	
 	private Integer cod_fisioterapeuta;
 	private String nome;
 	private String telefone;
-	private String dt_nascimento;
+	private Date dt_nascimento;
 	private String email;
 	private String sexo;
 	private String crefito;
@@ -17,7 +19,7 @@ public class ProfissionalBean {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ProfissionalBean(Integer cod_fisioterapeuta, String nome, String telefone, String dt_nascimento,
+	public ProfissionalBean(Integer cod_fisioterapeuta, String nome, String telefone, Date dt_nascimento,
 			String email, String sexo, String crefito, String especialidade, String cpf) {
 		super();
 		this.cod_fisioterapeuta = cod_fisioterapeuta;
@@ -53,10 +55,10 @@ public class ProfissionalBean {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public String getDt_nascimento() {
+	public Date getDt_nascimento() {
 		return dt_nascimento;
 	}
-	public void setDt_nascimento(String dt_nascimento) {
+	public void setDt_nascimento(Date dt_nascimento) {
 		this.dt_nascimento = dt_nascimento;
 	}
 	public String getEmail() {

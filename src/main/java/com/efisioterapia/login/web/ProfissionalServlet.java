@@ -1,7 +1,10 @@
 package com.efisioterapia.login.web;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,13 +42,23 @@ public class ProfissionalServlet extends HttpServlet {
 		String action = request.getServletPath();
 		System.out.println(action);
 		if (action.equals("/insertProfissional")) {
-			novoProfissional(request, response);
+			try {
+				novoProfissional(request, response);
+			} catch (ServletException | IOException | ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if (action.equals("/profissional")) {
 			profissionais(request, response);
 		} else if (action.equals("/selectProfissional")) {
 			editarProfissional(request, response);
 		} else if (action.equals("/updateProfissional")) {
-			editarProfissionalTwo(request, response);
+			try {
+				editarProfissionalTwo(request, response);
+			} catch (ServletException | IOException | ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if (action.equals("/deleteProfissional")) {
 			removerProfissional(request, response);
 		} else if (action.equals("/reportProfissionais")) {
@@ -58,11 +71,12 @@ public class ProfissionalServlet extends HttpServlet {
 
 	// NOVO PACIENTE
 	protected void novoProfissional(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, ParseException {
 		// SETAR AS VARIÁVEIS DO PROFISSIONAL
 		profissional.setNome(request.getParameter("nome"));
 		profissional.setTelefone(request.getParameter("telefone"));
-		profissional.setDt_nascimento(request.getParameter("dt_nascimento"));
+		Date dt_nascimento = new SimpleDateFormat("yyyy-mm-dd").parse(request.getParameter("dt_nascimento"));
+		profissional.setDt_nascimento(dt_nascimento);
 		profissional.setEmail(request.getParameter("email"));
 		profissional.setSexo(request.getParameter("sexo"));
 		profissional.setCrefito(request.getParameter("crefito"));
@@ -112,12 +126,13 @@ public class ProfissionalServlet extends HttpServlet {
 	}
 
 	protected void editarProfissionalTwo(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, ParseException {
 		// SETAR AS VARIÁVEIS PROFISSIONALBEAN
 		profissional.setCod_fisioterapeuta(Integer.parseInt(request.getParameter("cod_fisioterapeuta")));
 		profissional.setNome(request.getParameter("nome"));
 		profissional.setTelefone(request.getParameter("telefone"));
-		profissional.setDt_nascimento(request.getParameter("dt_nascimento"));
+		Date dt_nascimento = new SimpleDateFormat("yyyy-mm-dd").parse(request.getParameter("dt_nascimento"));
+		profissional.setDt_nascimento(dt_nascimento);
 		profissional.setEmail(request.getParameter("email"));
 		profissional.setSexo(request.getParameter("sexo"));
 		profissional.setCrefito(request.getParameter("crefito"));
@@ -185,7 +200,7 @@ public class ProfissionalServlet extends HttpServlet {
 			for (int i = 0; i < lista.size(); i++) {
 				tabela.addCell(lista.get(i).getNome());
 				tabela.addCell(lista.get(i).getTelefone());
-				tabela.addCell(lista.get(i).getDt_nascimento());
+				//tabela.addCell(lista.get(i).getDt_nascimento());
 				tabela.addCell(lista.get(i).getEmail());
 				tabela.addCell(lista.get(i).getSexo());
 				tabela.addCell(lista.get(i).getCrefito());

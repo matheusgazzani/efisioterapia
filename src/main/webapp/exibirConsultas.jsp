@@ -29,6 +29,7 @@ ArrayList<AvaliacaoBean> lista = (ArrayList<AvaliacaoBean>) request.getAttribute
 	}
 </style>
 <script>
+<%@include file="js/confirmadorAvaliacao.js" %>	
 $(document).ready(function(){
 	// Activate tooltip
 	$('[data-toggle="tooltip"]').tooltip();
@@ -107,12 +108,12 @@ $(document).ready(function(){
 						<%for (int i = 0; i < lista.size(); i++) { %>
 						<tr>
 							<td><%=lista.get(i).getCod_avaliacao()%></td>
-							<td><%=lista.get(i).getNome_fisioterapeuta()%></td>
 							<td><%=lista.get(i).getNome_paciente()%></td>
+							<td><%=lista.get(i).getNome_fisioterapeuta()%></td>
 							<td><%=lista.get(i).getFicha_avaliacao()%></td>
 							<td><%=lista.get(i).getDt_avaliacao()%></td>
-							<td><a class="edit" href="selectAvaliacao?cod_avaliacao=<%=lista.get(i).getCod_paciente()%>"><i class="material-icons" data-toggle="tooltip">&#xE254;</i></a>
-							<a class="delete" href="javascript:confirmar(<%=lista.get(i).getCod_paciente()%>)"><i class="material-icons" data-toggle="tooltip">&#xE872;</i></a>
+							<td><a class="edit" href="selectAvaliacao?cod_avaliacao=<%=lista.get(i).getCod_avaliacao()%>"><i class="material-icons" data-toggle="tooltip">&#xE254;</i></a>
+							<a class="delete" href="javascript:confirmarAvaliacao(<%=lista.get(i).getCod_avaliacao()%>)"><i class="material-icons" data-toggle="tooltip">&#xE872;</i></a>
 							</td>
 						</tr>
 					<%} %>

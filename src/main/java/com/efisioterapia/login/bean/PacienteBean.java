@@ -8,7 +8,7 @@ public class PacienteBean {
 	
 	private Integer cod_paciente;
 	private String nome;
-	private String dt_nascimento;
+	private Date dt_nascimento;
 	private String email;
 	private String profissao;
 	private String sexo;
@@ -20,7 +20,7 @@ public class PacienteBean {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public PacienteBean(Integer cod_paciente, String nome, String dt_nascimento, String email, String profissao,
+	public PacienteBean(Integer cod_paciente, String nome, Date dt_nascimento, String email, String profissao,
 			String sexo, String cpf, String telefone) {
 		super();
 		this.cod_paciente = cod_paciente;
@@ -46,10 +46,10 @@ public class PacienteBean {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getDt_nascimento() {
+	public Date getDt_nascimento() {
 		return dt_nascimento;
 	}
-	public void setDt_nascimento(String dt_nascimento) {
+	public void setDt_nascimento(Date dt_nascimento) {
 		this.dt_nascimento = dt_nascimento;
 	}
 	public String getEmail() {

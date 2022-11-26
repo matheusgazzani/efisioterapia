@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class AvaliacaoBean {
 	private Integer cod_avaliacao;
-	private String dt_avaliacao;
+	private Date dt_avaliacao;
 	private String ficha_avaliacao;
 	// ** CHAVES ESTRANGEIRAS **//
 	private Integer cod_paciente;
@@ -18,7 +18,7 @@ public class AvaliacaoBean {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AvaliacaoBean(Integer cod_avaliacao, String nome_fisioterapeuta, String nome_paciente, String ficha_avaliacao, String dt_avaliacao, Integer cod_paciente,
+	public AvaliacaoBean(Integer cod_avaliacao, String nome_fisioterapeuta, String nome_paciente, String ficha_avaliacao, Date dt_avaliacao, Integer cod_paciente,
 			Integer cod_fisioterapeuta) {
 		super();
 		this.cod_avaliacao = cod_avaliacao;
@@ -39,11 +39,11 @@ public class AvaliacaoBean {
 		this.cod_avaliacao = cod_avaliacao;
 	}
 
-	public String getDt_avaliacao() {
+	public Date getDt_avaliacao() {
 		return dt_avaliacao;
 	}
 
-	public void setDt_avaliacao(String dt_avaliacao) {
+	public void setDt_avaliacao(Date dt_avaliacao) {
 		this.dt_avaliacao = dt_avaliacao;
 	}
 

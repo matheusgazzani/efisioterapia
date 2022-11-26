@@ -72,8 +72,7 @@ body {
 									<div class="form-group row">
 				<label class="col-form-label col-4">Data de avaliação</label>
 				<div class="col-8">
-					<input type="date" class="form-control" name="dt_avaliacao"
-						required="true">
+					<input type="date" class="form-control" name="dt_avaliacao">
 				</div>
 			</div>
 								</div>
@@ -91,8 +90,8 @@ body {
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputMessage">Descrição do Paciente</label>
-							<textarea class="form-control" name="descricao" id="inputMessage" rows="5"
+							<label for="inputMessage">Ficha de Avaliação</label>
+							<textarea class="form-control" name="ficha_avaliacao" id="inputMessage" rows="5"
 								required></textarea>
 						</div>
 						<button type="submit" class="btn btn-primary">Registrar</button>

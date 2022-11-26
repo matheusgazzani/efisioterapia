@@ -54,7 +54,8 @@ public class PacienteDAO {
 			PreparedStatement pst = con.prepareStatement(query);
 			// SUBSTITUIR OS PARÂMETROS PELO CONTEÚDOS DAS VARIÁVEIS
 			pst.setString(1, paciente.getNome());
-			pst.setString(2, paciente.getDt_nascimento());
+			java.sql.Date data = new java.sql.Date(paciente.getDt_nascimento().getTime());
+			pst.setDate(2, data);
 			pst.setString(3, paciente.getEmail());
 			pst.setString(4, paciente.getProfissao());
 			pst.setString(5, paciente.getSexo());
@@ -87,7 +88,7 @@ public class PacienteDAO {
 				// VARIÁVEIS QUE RECEBEM DADOS DO BANCO
 				Integer cod_paciente = rs.getInt(1);
 				String nome = rs.getString(2);
-				String dt_nascimento = rs.getString(3);
+				Date dt_nascimento = rs.getDate(3);
 				String email = rs.getString(4);
 				String profissao = rs.getString(5);
 				String sexo = rs.getString(6);
@@ -138,7 +139,7 @@ public class PacienteDAO {
 				// SETAR AS VARIÁVEIS DO PACIENTEBEAN
 				paciente.setCod_paciente(rs.getInt(1));
 				paciente.setNome(rs.getString(2));
-				paciente.setDt_nascimento(rs.getString(3));
+				paciente.setDt_nascimento(rs.getDate(3));
 				paciente.setEmail(rs.getString(4));
 				paciente.setProfissao(rs.getString(5));
 				paciente.setSexo(rs.getString(6));
@@ -157,7 +158,8 @@ public class PacienteDAO {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(create);
 			pst.setString(1, paciente.getNome());
-			pst.setString(2, paciente.getDt_nascimento());
+			java.sql.Date data = new java.sql.Date(paciente.getDt_nascimento().getTime());
+			pst.setDate(2, data);
 			pst.setString(3, paciente.getEmail());
 			pst.setString(4, paciente.getProfissao());
 			pst.setString(5, paciente.getSexo());

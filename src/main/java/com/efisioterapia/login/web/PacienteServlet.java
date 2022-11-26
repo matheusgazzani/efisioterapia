@@ -1,6 +1,8 @@
 package com.efisioterapia.login.web;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -41,11 +43,21 @@ public class PacienteServlet extends HttpServlet {
 		if (action.equals("/paciente")) {
 			paciente(request, response);
 		} else if (action.equals("/insert")) {
-			novoPaciente(request, response);
+			try {
+				novoPaciente(request, response);
+			} catch (ServletException | IOException | ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if (action.equals("/selectPaciente")) {
 			editarPaciente(request, response);
 		} else if (action.equals("/updatePaciente")) {
-			editarPacienteTwo(request, response);
+			try {
+				editarPacienteTwo(request, response);
+			} catch (ServletException | IOException | ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if (action.equals("/deletePaciente")) {
 			removerPaciente(request, response);
 		} else if (action.equals("/reportPacientes")) {
@@ -68,9 +80,10 @@ public class PacienteServlet extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	/** NOVO PACIENTE **/
+	/** NOVO PACIENTE 
+	 * @throws ParseException **/
 	protected void novoPaciente(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, ParseException {
 		// TESTANDO O RECEBIMENTO DO FORMULÁRIO
 		// PARÂMETROS DO ARQUIVO "cadastrarPaciente.jsp"
 		System.out.println(request.getParameter("nome"));
@@ -79,7 +92,6 @@ public class PacienteServlet extends HttpServlet {
 		System.out.println(request.getParameter("profissao"));
 		System.out.println(request.getParameter("sexo"));
 		System.out.println(request.getParameter("telefone"));
-		System.out.println(request.getParameter("nascimento"));
 
 		// SETAR AS VARIÁVEIS DO PACIENTE
 		paciente.setNome(request.getParameter("nome"));
@@ -88,7 +100,8 @@ public class PacienteServlet extends HttpServlet {
 		paciente.setProfissao(request.getParameter("profissao"));
 		paciente.setSexo(request.getParameter("sexo"));
 		paciente.setTelefone(request.getParameter("telefone"));
-		paciente.setDt_nascimento((request.getParameter("nascimento")));
+		Date dt_nascimento = new SimpleDateFormat("yyyy-mm-dd").parse(request.getParameter("nascimento"));
+		paciente.setDt_nascimento(dt_nascimento);
 
 		// INVOCAR O MÉTODO "inserirPaciente" passando o objeto de paciente
 		dao.inserirPaciente(paciente);
@@ -120,13 +133,15 @@ public class PacienteServlet extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	/** EDITAR PACIENTE **/
+	/** EDITAR PACIENTE 
+	 * @throws ParseException **/
 	protected void editarPacienteTwo(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, ParseException {
 		// SETAR AS VARIÁVEIS PACIENTEBEAN
 		paciente.setCod_paciente(Integer.parseInt(request.getParameter("cod_paciente")));
 		paciente.setNome(request.getParameter("nome"));
-		paciente.setDt_nascimento(request.getParameter("dt_nascimento"));
+		Date dt_nascimento = new SimpleDateFormat("yyyy-mm-dd").parse(request.getParameter("dt_nascimento"));
+		paciente.setDt_nascimento(dt_nascimento);
 		paciente.setEmail(request.getParameter("email"));
 		paciente.setProfissao(request.getParameter("profissao"));
 		paciente.setSexo(request.getParameter("sexo"));
@@ -190,7 +205,7 @@ public class PacienteServlet extends HttpServlet {
 			ArrayList<PacienteBean> lista = dao.listarPacientes();
 			for (int i = 0; i < lista.size(); i++) {
 				tabela.addCell(lista.get(i).getNome());
-				tabela.addCell(lista.get(i).getDt_nascimento());
+				//tabela.addCell(lista.get(i).getDt_nascimento());
 				tabela.addCell(lista.get(i).getEmail());
 				tabela.addCell(lista.get(i).getProfissao());
 				tabela.addCell(lista.get(i).getSexo());
