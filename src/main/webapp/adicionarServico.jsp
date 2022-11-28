@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.efisioterapia.login.web.ServicosServlet"%>
+<%@ page import="com.efisioterapia.login.database.ServicosDAO"%>
+<%@ page import="com.efisioterapia.login.bean.ServicoBean"%>
+<%@ page import="java.util.*"%>  
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -48,9 +53,19 @@
 						<option>Antônio Vasconcelos</option>
 						<option>Renan Levi Ramos</option>
 						<option>Augusto Caleb Pereira</option>
-						
 					</select>
                   </div>
+                  
+                  <div class="form-group">
+					<label class="mr-sm-2" for="inlineFormCustomSelect">Fisioterapeutas</label> 
+					<select type="number"
+						value="<c:out value='${servico.cod_fisioterapeuta}'/>" name="nome">
+						<c:forEach var="profissional" items="${profissionais}">
+						<option><c:out value=" ${profissional.nome}"/></option>
+						</c:forEach>
+						</select>
+				</div>
+				
                   <div class="d-grid">
                     <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Cadastrar</button>
                   </div>

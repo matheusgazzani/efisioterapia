@@ -174,6 +174,25 @@ public class AvaliacaoDAO {
 		}
 	}
 	
+	/** EDITAR AVALIAÇÃO **/
+	/** SALVAR AVALIAÇÃO **/
+	public void alterarAvaliacao(AvaliacaoBean avaliacao) {
+		String create = "UPDATE avaliacao SET dt_avaliacao=?, ficha_avaliacao=?, cod_paciente=?, cod_fisioterapeuta=? WHERE cod_avaliacao = ?";
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(create);
+			java.sql.Date data = new java.sql.Date(avaliacao.getDt_avaliacao().getTime());
+			pst.setDate(1, data);
+			pst.setString(2, avaliacao.getFicha_avaliacao());			
+			pst.setInt(3, avaliacao.getCod_paciente());
+			pst.setInt(4, avaliacao.getCod_fisioterapeuta());
+			pst.executeUpdate();
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 	// EDITAR AVALIAÇÃO
 	public void alterarProfissional(ProfissionalBean profissional) {
 		String create = "UPDATE fisioterapeuta SET Nome=?,Telefone=?,DT_Nascimento=?,Email=?,Sexo=?,CREFITO=?,Especialidade=?,CPF=? WHERE cod_fisioterapeuta = ?";

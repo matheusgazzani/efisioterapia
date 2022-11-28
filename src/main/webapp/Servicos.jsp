@@ -83,7 +83,7 @@ body {
 						<h2>Serviços</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="adicionarServico.jsp" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar Serviço</span></a>
+						<a href="/newservico" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar Serviço</span></a>
 					</div>
 				</div>
 			</div>

@@ -21,7 +21,6 @@ public class ProfissionalBean {
 	
 	public ProfissionalBean(Integer cod_fisioterapeuta, String nome, String telefone, Date dt_nascimento,
 			String email, String sexo, String crefito, String especialidade, String cpf) {
-		super();
 		this.cod_fisioterapeuta = cod_fisioterapeuta;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -34,6 +33,8 @@ public class ProfissionalBean {
 	}
 	
 	public ProfissionalBean(int id, String nome2) {
+		this.nome = nome2;
+		this.cod_fisioterapeuta = id;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -90,6 +91,13 @@ public class ProfissionalBean {
 	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	@Override
+	public String toString() {
+		return "ProfissionalBean [cod_fisioterapeuta=" + cod_fisioterapeuta + ", nome=" + nome + ", telefone="
+				+ telefone + ", dt_nascimento=" + dt_nascimento + ", email=" + email + ", sexo=" + sexo + ", crefito="
+				+ crefito + ", especialidade=" + especialidade + ", cpf=" + cpf + "]";
 	}
 
 }

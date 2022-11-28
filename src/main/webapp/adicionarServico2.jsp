@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.efisioterapia.login.web.ServicosServlet"%>
+<%@ page import="com.efisioterapia.login.database.ServicosDAO"%>
+<%@ page import="com.efisioterapia.login.bean.ServicoBean"%>
+<%@ page import="java.util.*"%>  
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Avaliação | e-Fisioterapia</title>
+<title>Serviços | e-Fisioterapia</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
@@ -28,34 +33,41 @@
             <div class="row">
               <div class="container-a">
   
-                <form action="updateAvaliacao" method=post>
-                <h3 class="login-heading mb-4">Editar avaliação</h3>
-                <h6>Prezado(a), preencha corretamente todos os campos para editar uma avaliação.</h6>
-                <div class="form-floating mb-3">
-                    <input readonly class="form-control" name="cod_avaliacao" value="<%out.print(request.getAttribute("cod_avaliacao"));%>">
-                    <label for="floatingInput">ID</label>
+                <form action="inserirServico" method="post">
+                <h3 class="login-heading mb-4">Serviços</h3>
+                <h6>Prezado(a), preencha corretamente todos os campos para cadastrar um serviço.</h6>
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="nome">
+                    <label for="floatingInput">Nome do serviço</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input class="form-control" name="nome_paciente" value="<%out.print(request.getAttribute("nome_paciente"));%>">
-                    <label for="floatingInput">Paciente</label>
+                    <input type="text" class="form-control" name="valor">
+                    <label for="floatingInput">Valor R$</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input class="form-control" name="nome_fisioterapeuta" value="<%out.print(request.getAttribute("nome_fisioterapeuta"));%>">
-                    <label for="floatingInput">Fisioterapeuta</label>
+                    <input type="text" class="form-control" name="descricao">
+                    <label for="floatingInput">Descrição</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input rows="5" required class="form-control" name="ficha_avaliacao" value="<%out.print(request.getAttribute("ficha_avaliacao"));%>"></input>
-                    <label for="floatingInput">Ficha de Avaliação</label>
+                    <select class="form-control" name="nome_profissional">
+						<option>Antônio Vasconcelos</option>
+						<option>Renan Levi Ramos</option>
+						<option>Augusto Caleb Pereira</option>
+					</select>
                   </div>
-                 <div class="form-floating mb-3">
-                    <input type="date" class="form-control" name="dt_avaliacao" value="<%out.print(request.getAttribute("dt_avaliacao"));%>">
-                    <label for="floatingInput">Data de avaliação</label>
-                  </div>
-                               
-                                
                   
-            <div class="d-grid">
-                    <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Salvar</button>
+                  <div class="form-group">
+					<label class="mr-sm-2" for="inlineFormCustomSelect">Fisioterapeutas</label> 
+					<select type="number"
+						value="<c:out value='${servico.cod_servico}'/>" name="nome_fisioterapeuta">
+						<c:forEach var="fisioterapeuta" items="${profissionais}">
+						<option><c:out value=" ${fisioterapeuta.nome}"/></option>
+						</c:forEach>
+						</select>
+				</div>
+				
+                  <div class="d-grid">
+                    <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Cadastrar</button>
                   </div>
                   <div class="d-grid">
                     <a class="btn btn-danger" href="servicos" role="button">CANCELAR</a>

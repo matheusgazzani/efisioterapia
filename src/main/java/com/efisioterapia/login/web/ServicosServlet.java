@@ -20,8 +20,8 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
-@WebServlet(urlPatterns = { "/servicos", "/inserirServico", "/selectServico", "/updateServico", "/deleteServico",
-		"/reportServicos" })
+@WebServlet(urlPatterns = { "/servicos", "/newservico", "/inserirServico", "/selectServico", "/updateServico",
+		"/deleteServico", "/reportServicos" })
 public class ServicosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -43,6 +43,8 @@ public class ServicosServlet extends HttpServlet {
 			listarServicos(request, response);
 		} else if (action.equals("/inserirServico")) {
 			novoServico(request, response);
+		} else if (action.equals("/newservico")) {
+			showNewForm(request, response);
 		} else if (action.equals("/selectServico")) {
 			editarServico(request, response);
 		} else if (action.equals("/updateServico")) {
@@ -56,17 +58,17 @@ public class ServicosServlet extends HttpServlet {
 		}
 
 	}
-	
+
 	/** LISTAR TODOS OS PROFISSIONAIS CADASTRADOS **/
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<ProfissionalBean> listprofissional = servicosDao.listProfissional();
 		request.setAttribute("profissionais", listprofissional);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("editarServico.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("adicionarServico2.jsp");
 		dispatcher.forward(request, response);
 		System.out.println(listprofissional);
 	}
-	
+
 	/** NOVO SERVIÇO **/
 	protected void novoServico(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -75,10 +77,10 @@ public class ServicosServlet extends HttpServlet {
 		System.out.println(request.getParameter("nome"));
 		System.out.println(request.getParameter("valor"));
 		System.out.println(request.getParameter("descricao"));
-		System.out.println(request.getParameter("nome_profissional"));
+		System.out.println(request.getParameter("nome_fisioterapeuta"));
 		// PARÂMETROS DO ARQUIVO "adicionarServico.jsp"
 		// SETAR AS VARIÁVEIS DO SERVIÇO
-		String nome_profissional = request.getParameter("nome_profissional");
+		String nome_profissional = request.getParameter("nome_fisioterapeuta");
 		System.out.println(nome_profissional + "Profissional");
 		int id_profissional = servicosDao.getProfissionalId(nome_profissional);
 		System.out.println(id_profissional);

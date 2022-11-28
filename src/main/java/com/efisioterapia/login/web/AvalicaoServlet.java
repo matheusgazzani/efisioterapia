@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.efisioterapia.login.bean.AvaliacaoBean;
 import com.efisioterapia.login.database.AvaliacaoDAO;
 
-@WebServlet(urlPatterns = { "/avaliacoes", "/inserirAvaliacao", "/deleteAvaliacao", "/selectAvaliacao" })
+@WebServlet(urlPatterns = { "/avaliacoes", "/inserirAvaliacao", "/deleteAvaliacao", "/selectAvaliacao", "/updateAvaliacao" })
 public class AvalicaoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -47,6 +47,13 @@ public class AvalicaoServlet extends HttpServlet {
 			removerAvaliacao(request, response);
 		} else if (action.equals("/selectAvaliacao")) {
 			editarAvaliacao(request, response);
+		} else if (action.equals("/updateAvaliacao")) {
+			try {
+				editarAvaliacaoTwo(request, response);
+			} catch (ServletException | IOException | ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			response.sendRedirect("/index.jsp");
 		}
@@ -100,24 +107,41 @@ public class AvalicaoServlet extends HttpServlet {
 	}
 
 	/** EDITAR SERVIÇO | SELECIONAR AVALIAÇÃO **/
+	/** PRIMEIRA PARTE **/
 	protected void editarAvaliacao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// RECEBIMENTO DO ID DO SERVICO QUE SERÁ EDITADO
+		// RECEBIMENTO DO ID DA AVALIAÇÃO QUE SERÁ EDITADA
 		Integer cod_avaliacao = Integer.parseInt(request.getParameter("cod_avaliacao"));
 		System.out.println(cod_avaliacao);
-		// SETAR A VARIÁVEL ServicoBean
+		// SETAR A VARIÁVEL AvaliacaoBean
 		avaliacao.setCod_avaliacao(cod_avaliacao);
-		// EXECUTAR O MÉTODO selecionarServico (DAO)
+		// EXECUTAR O MÉTODO selecionarAvaliacao (DAO)
 		avaliacaoDAO.selecionarAvaliacao(avaliacao);
-		// SETAR OS ATRIBUTOS DO FORMULÁRIO COM O CONTEÚDO SERVICOBEAN
+		// SETAR OS ATRIBUTOS DO FORMULÁRIO COM O CONTEÚDO AVALIACAOBEAN
 		request.setAttribute("cod_avaliacao", avaliacao.getCod_avaliacao());
 		request.setAttribute("nome_paciente", avaliacao.getNome_paciente());
 		request.setAttribute("nome_fisioterapeuta", avaliacao.getNome_fisioterapeuta());
 		request.setAttribute("ficha_avaliacao", avaliacao.getFicha_avaliacao());
 		request.setAttribute("dt_avaliacao", avaliacao.getDt_avaliacao());
-		// ENCAMINHAR AO DOCUMENTO EDITARSERVICO.JSP
+		// ENCAMINHAR AO DOCUMENTO EDITARAVALIACAO.JSP
 		RequestDispatcher rd = request.getRequestDispatcher("editarAvaliacao.jsp");
 		rd.forward(request, response);
+	}
+
+	protected void editarAvaliacaoTwo(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException, ParseException {
+		// SETAR AS VARIÁVEIS PROFISSIONALBEAN
+		Date dt_avaliacao = new SimpleDateFormat("yyyy-mm-dd").parse(request.getParameter("dt_avaliacao"));
+		avaliacao.setDt_avaliacao(dt_avaliacao);
+		avaliacao.setFicha_avaliacao(request.getParameter("ficha_avaliacao"));
+		avaliacao.setNome_paciente(request.getParameter("nome_paciente"));
+		avaliacao.setNome_fisioterapeuta(request.getParameter("nome_fisioterapeuta"));
+		// EXECUTAR O MÉTODO alterarProfissional
+		avaliacaoDAO.alterarAvaliacao(avaliacao);
+		// REDIRECIONAR PARA O DOCUMENTO exibirProfissionais.jsp (COM ATUALIZAÇÕES DO
+		// BANCO
+		// DE DADOS)
+		response.sendRedirect("avaliacoes");
 	}
 
 	/** REMOVER AVALIAÇÃO **/

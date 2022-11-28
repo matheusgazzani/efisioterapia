@@ -3,6 +3,7 @@ package com.efisioterapia.login.bean;
 import java.util.Date;
 
 public class AvaliacaoBean {
+	/** ATRIBUTOS DO BANCO DE DADOS | TBAELA NxN **/
 	private Integer cod_avaliacao;
 	private Date dt_avaliacao;
 	private String ficha_avaliacao;

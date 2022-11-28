@@ -89,7 +89,7 @@ public class ServicosDAO {
 	
 	/** OPÇÃO PARA SELECIONAR UM PROFISSIONAL | CHAVE ESTRANGEIRA **/
 	public void selecionarProfissional(ServicoBean servico) {
-		String profissional = "SELECT fisioterapeuta.nome FROM fisioterapeuta";
+		String profissional = "SELECT fisioterapeuta.nome AS FROM fisioterapeuta";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(profissional);
@@ -108,14 +108,16 @@ public class ServicosDAO {
 	/** LISTAR TODOS OS PROFISSIONAIS CADASTRADOS NO BD **/
 	public List<ProfissionalBean> listProfissional() {
 		List<ProfissionalBean> profissionais = new ArrayList<>();
-		String read = "SELECT fisioterapeuta.cod_fisioterapeuta, fisioterapeuta.nome FROM fisioterapeuta";
+		String read = "SELECT fisioterapeuta.cod_fisioterapeuta, fisioterapeuta.nome AS \"nome_fisioterapeuta\" FROM fisioterapeuta";
 		try (Connection connection = conectar();
 				PreparedStatement preparedStatement = connection.prepareStatement(read)) {
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				int id = rs.getInt("cod_fisioterapeuta");
-				String nome = rs.getString("nome_profissional");
+				String nome = rs.getString("nome_fisioterapeuta");
 				profissionais.add(new ProfissionalBean(id, nome));
+				System.out.println(id);
+				System.out.println(nome);
 			}
 		} catch (SQLException e) {
 			System.out.println(e);
