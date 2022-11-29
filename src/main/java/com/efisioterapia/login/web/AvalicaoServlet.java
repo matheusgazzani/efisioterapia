@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,9 +15,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.efisioterapia.login.bean.AvaliacaoBean;
+import com.efisioterapia.login.bean.PacienteBean;
+import com.efisioterapia.login.bean.ProfissionalBean;
 import com.efisioterapia.login.database.AvaliacaoDAO;
 
-@WebServlet(urlPatterns = { "/avaliacoes", "/inserirAvaliacao", "/deleteAvaliacao", "/selectAvaliacao", "/updateAvaliacao" })
+@WebServlet(urlPatterns = { "/avaliacoes", "/inserirAvaliacao", "/newAvaliacao", "/deleteAvaliacao", "/selectAvaliacao",
+		"/updateAvaliacao" })
 public class AvalicaoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -45,6 +49,8 @@ public class AvalicaoServlet extends HttpServlet {
 			}
 		} else if (action.equals("/deleteAvaliacao")) {
 			removerAvaliacao(request, response);
+		} else if (action.equals("/newAvaliacao")) {
+			showNewForm(request, response);
 		} else if (action.equals("/selectAvaliacao")) {
 			editarAvaliacao(request, response);
 		} else if (action.equals("/updateAvaliacao")) {
@@ -57,6 +63,19 @@ public class AvalicaoServlet extends HttpServlet {
 		} else {
 			response.sendRedirect("/index.jsp");
 		}
+	}
+
+	/** LISTAR TODOS OS PROFISSIONAIS CADASTRADOS **/
+	/** LISTAR TODOS OS PACIENTES CADASTRADOS **/
+	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		List<ProfissionalBean> listprofissional = avaliacaoDAO.listProfissional();
+		request.setAttribute("profissionais", listprofissional);
+		List<PacienteBean> listpaciente = avaliacaoDAO.listPaciente();
+		request.setAttribute("pacientes", listpaciente);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("adicionarAvaliacao.jsp");
+		dispatcher.forward(request, response);
+		System.out.println(listprofissional);
 	}
 
 	/**
@@ -123,6 +142,13 @@ public class AvalicaoServlet extends HttpServlet {
 		request.setAttribute("nome_fisioterapeuta", avaliacao.getNome_fisioterapeuta());
 		request.setAttribute("ficha_avaliacao", avaliacao.getFicha_avaliacao());
 		request.setAttribute("dt_avaliacao", avaliacao.getDt_avaliacao());
+		List<ProfissionalBean> listprofissional = avaliacaoDAO.listProfissional();
+		request.setAttribute("profissionais", listprofissional);
+		List<PacienteBean> listpaciente = avaliacaoDAO.listPaciente();
+		request.setAttribute("pacientes", listpaciente);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("editarAvaliacao.jsp");
+		dispatcher.forward(request, response);
+		System.out.println(listprofissional);
 		// ENCAMINHAR AO DOCUMENTO EDITARAVALIACAO.JSP
 		RequestDispatcher rd = request.getRequestDispatcher("editarAvaliacao.jsp");
 		rd.forward(request, response);
@@ -134,8 +160,14 @@ public class AvalicaoServlet extends HttpServlet {
 		Date dt_avaliacao = new SimpleDateFormat("yyyy-mm-dd").parse(request.getParameter("dt_avaliacao"));
 		avaliacao.setDt_avaliacao(dt_avaliacao);
 		avaliacao.setFicha_avaliacao(request.getParameter("ficha_avaliacao"));
-		avaliacao.setNome_paciente(request.getParameter("nome_paciente"));
-		avaliacao.setNome_fisioterapeuta(request.getParameter("nome_fisioterapeuta"));
+		String nome_profissional = request.getParameter("nome_fisioterapeuta");
+		System.out.println(nome_profissional + "Profissional");
+		int id_profissional = avaliacaoDAO.getProfissionalId(nome_profissional);
+		String nome_paciente = request.getParameter("nome_paciente");
+		System.out.println(nome_profissional + "Paciente");
+		int id_paciente = avaliacaoDAO.getPacienteId(nome_paciente);
+		avaliacao.setCod_fisioterapeuta(id_profissional);
+		avaliacao.setCod_paciente(id_paciente);
 		// EXECUTAR O MÉTODO alterarProfissional
 		avaliacaoDAO.alterarAvaliacao(avaliacao);
 		// REDIRECIONAR PARA O DOCUMENTO exibirProfissionais.jsp (COM ATUALIZAÇÕES DO

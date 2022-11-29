@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.efisioterapia.login.web.AvalicaoServlet"%>
+<%@ page import="com.efisioterapia.login.database.AvaliacaoDAO"%>
+<%@ page import="com.efisioterapia.login.bean.AvaliacaoBean"%>
+<%@ page import="com.efisioterapia.login.bean.ProfissionalBean"%>
+<%@ page import="com.efisioterapia.login.bean.PacienteBean"%>
+<%@ page import="java.util.List"%>
+<%
+ArrayList<ProfissionalBean> lista = (ArrayList<ProfissionalBean>) request.getAttribute("profissionais");	
+%>
+<%
+ArrayList<PacienteBean> listapaciente = (ArrayList<PacienteBean>) request.getAttribute("pacientes");	
+%>     
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -32,16 +45,36 @@
                 <h3 class="login-heading mb-4">Editar avaliação</h3>
                 <h6>Prezado(a), preencha corretamente todos os campos para editar uma avaliação.</h6>
                 <div class="form-floating mb-3">
-                    <input readonly class="form-control" name="cod_avaliacao" value="<%out.print(request.getAttribute("cod_avaliacao"));%>">
+                    <input disabled class="form-control" name="cod_avaliacao" value="<%out.print(request.getAttribute("cod_avaliacao"));%>">
                     <label for="floatingInput">ID</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input class="form-control" name="nome_paciente" value="<%out.print(request.getAttribute("nome_paciente"));%>">
+                    <input disabled class="form-control" name="nome_paciente" value="<%out.print(request.getAttribute("nome_paciente"));%>">
                     <label for="floatingInput">Paciente</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input class="form-control" name="nome_fisioterapeuta" value="<%out.print(request.getAttribute("nome_fisioterapeuta"));%>">
+                    <select class="form-control" name="nome_paciente">
+                    	<option>Paciente</option>
+						<%for (int i = 0; i < listapaciente.size(); i++) { %>
+						<tr>
+							<option><%=listapaciente.get(i).getNome()%></option>
+						</tr>
+					<%} %>
+					</select>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input disabled class="form-control" name="nome_fisioterapeuta" value="<%out.print(request.getAttribute("nome_fisioterapeuta"));%>">
                     <label for="floatingInput">Fisioterapeuta</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <select class="form-control" name="nome_fisioterapeuta">
+                    	<option>Fisioterapeuta</option>
+						<%for (int i = 0; i < lista.size(); i++) { %>
+						<tr>
+							<option><%=lista.get(i).getNome()%></option>
+						</tr>
+					<%} %>
+					</select>
                   </div>
                   <div class="form-floating mb-3">
                     <input rows="5" required class="form-control" name="ficha_avaliacao" value="<%out.print(request.getAttribute("ficha_avaliacao"));%>"></input>

@@ -108,13 +108,13 @@ public class ServicosDAO {
 	/** LISTAR TODOS OS PROFISSIONAIS CADASTRADOS NO BD **/
 	public List<ProfissionalBean> listProfissional() {
 		List<ProfissionalBean> profissionais = new ArrayList<>();
-		String read = "SELECT fisioterapeuta.cod_fisioterapeuta, fisioterapeuta.nome AS \"nome_fisioterapeuta\" FROM fisioterapeuta";
+		String read = "SELECT fisioterapeuta.cod_fisioterapeuta, fisioterapeuta.nome AS \"nome\" FROM fisioterapeuta";
 		try (Connection connection = conectar();
 				PreparedStatement preparedStatement = connection.prepareStatement(read)) {
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				int id = rs.getInt("cod_fisioterapeuta");
-				String nome = rs.getString("nome_fisioterapeuta");
+				String nome = rs.getString("nome");
 				profissionais.add(new ProfissionalBean(id, nome));
 				System.out.println(id);
 				System.out.println(nome);

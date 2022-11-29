@@ -67,5 +67,13 @@ public class ServicoBean {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String toString() {
+		return "ServicoBean [cod_servico=" + cod_servico + ", nome=" + nome + ", valor=" + valor + ", descricao="
+				+ descricao + ", cod_fisioterapeuta=" + cod_fisioterapeuta + ", nome_fisioterapeuta="
+				+ nome_fisioterapeuta + "]";
+	}
+	
 	
 }

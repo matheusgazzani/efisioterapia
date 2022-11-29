@@ -20,8 +20,8 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
-@WebServlet(urlPatterns = { "/servicos", "/newservico", "/inserirServico", "/selectServico", "/updateServico",
-		"/deleteServico", "/reportServicos" })
+@WebServlet(urlPatterns = { "/servicos", "/newservico", "/selectEdit", "/inserirServico", "/selectServico",
+		"/updateServico", "/deleteServico", "/reportServicos" })
 public class ServicosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -60,11 +60,22 @@ public class ServicosServlet extends HttpServlet {
 	}
 
 	/** LISTAR TODOS OS PROFISSIONAIS CADASTRADOS **/
+	/** VAI CRIAR A LISTA NO FORMULÁRIO **/
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		List<ProfissionalBean> listprofissional = servicosDao.listProfissional();
 		request.setAttribute("profissionais", listprofissional);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("adicionarServico2.jsp");
+		dispatcher.forward(request, response);
+		System.out.println(listprofissional);
+	}
+
+	/** LISTAR TODOS OS PROFISSIONAIS CADASTRADOS **/
+	private void showNewFormEditar(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		List<ProfissionalBean> listprofissional = servicosDao.listProfissional();
+		request.setAttribute("profissionais", listprofissional);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("editarServico2.jsp");
 		dispatcher.forward(request, response);
 		System.out.println(listprofissional);
 	}
@@ -99,9 +110,7 @@ public class ServicosServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// OBJETO QUE IRÁ RECEBER OS DADOS DO "SERVICOSBEAN"
 		ArrayList<ServicoBean> lista = servicosDao.listarServicos();
-
 		System.out.println(lista);
-
 		request.setAttribute("servicos", lista);
 		RequestDispatcher rd = request.getRequestDispatcher("Servicos.jsp");
 		rd.forward(request, response);
@@ -119,13 +128,19 @@ public class ServicosServlet extends HttpServlet {
 		servicosDao.selecionarServico(servico);
 		// SETAR OS ATRIBUTOS DO FORMULÁRIO COM O CONTEÚDO SERVICOBEAN
 		request.setAttribute("cod_servico", servico.getCod_servico());
-		;
 		request.setAttribute("nome", servico.getNome());
 		request.setAttribute("valor", servico.getValor());
 		request.setAttribute("descricao", servico.getDescricao());
 		request.setAttribute("nome_fisioterapeuta", servico.getNome_fisioterapeuta());
 		// ENCAMINHAR AO DOCUMENTO EDITARSERVICO.JSP
-		RequestDispatcher rd = request.getRequestDispatcher("editarServico.jsp");
+		// LISTA TODOS OS PROFISSIONAIS CADASTRADOS NO SISTEMA
+		List<ProfissionalBean> listprofissional = servicosDao.listProfissional();
+		request.setAttribute("profissionais", listprofissional);
+		// ENCAMINHAR AO DOCUMENTO EDITARSERVICO2.JSP
+		RequestDispatcher dispatcher = request.getRequestDispatcher("editarServico2.jsp");
+		dispatcher.forward(request, response);
+		System.out.println(listprofissional);
+		RequestDispatcher rd = request.getRequestDispatcher("editarServico2.jsp");
 		rd.forward(request, response);
 	}
 
@@ -136,8 +151,10 @@ public class ServicosServlet extends HttpServlet {
 		servico.setCod_servico(Integer.parseInt(request.getParameter("cod_servico")));
 		servico.setNome(request.getParameter("nome"));
 		servico.setDescricao(request.getParameter("descricao"));
-		servico.setNome_fisioterapeuta(request.getParameter("nome_fisioterapeuta"));
-		// EXECUTAR O MÉTODO alterarServico
+		String nome_profissional = request.getParameter("nome_fisioterapeuta");
+		System.out.println(nome_profissional + "Profissional");
+		int id_profissional = servicosDao.getProfissionalId(nome_profissional);
+		servico.setCod_fisioterapeuta(id_profissional);
 		servicosDao.alterarServico(servico);
 		// REDIRECIONAR PARA O DOCUMENTO Servicos.jsp (COM ATUALIZAÇÕES DO BANCO
 		// DE DADOS)

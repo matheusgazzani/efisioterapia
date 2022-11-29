@@ -52,15 +52,6 @@
                     <label for="floatingInput">Profissional</label>
                   </div>                  <div class="d-grid">
                   
-                  <div class="form-group">
-					<label class="mr-sm-2" for="inlineFormCustomSelect">Profissionais</label> 
-					<select type="number"
-						value="<c:out value='${servico.cod_fisioterapeuta}'/>" name="nome_fisioterapeuta">
-						<c:forEach var="profissional" items="${listprofissional}">
-						<option><c:out value="${listprofissional.nome}"/></option>
-						</c:forEach>
-						</select>
-				</div>
                     <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Salvar</button>
                   </div>
                   <div class="d-grid">

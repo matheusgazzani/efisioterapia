@@ -7,8 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.efisioterapia.login.bean.AvaliacaoBean;
+import com.efisioterapia.login.bean.PacienteBean;
 import com.efisioterapia.login.bean.ProfissionalBean;
 import com.efisioterapia.login.bean.ServicoBean;
 
@@ -63,6 +65,26 @@ public class AvaliacaoDAO {
 		}
 		return idprofissional;
 	}
+	
+	/** LISTAR TODOS OS PROFISSIONAIS CADASTRADOS NO BD **/
+	public List<ProfissionalBean> listProfissional() {
+		List<ProfissionalBean> profissionais = new ArrayList<>();
+		String read = "SELECT fisioterapeuta.cod_fisioterapeuta, fisioterapeuta.nome AS \"nome\" FROM fisioterapeuta";
+		try (Connection connection = conectar();
+				PreparedStatement preparedStatement = connection.prepareStatement(read)) {
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				int id = rs.getInt("cod_fisioterapeuta");
+				String nome = rs.getString("nome");
+				profissionais.add(new ProfissionalBean(id, nome));
+				System.out.println(id);
+				System.out.println(nome);
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		return profissionais;
+	}
 
 	// ** CRUD - CREATE PEGAR O ID DO PACIENTE **/
 	public int getPacienteId(String nome_paciente) {
@@ -76,12 +98,32 @@ public class AvaliacaoDAO {
 			while (rs.next()) {
 				idpaciente = rs.getInt("cod_paciente");
 				System.out.println(idpaciente + "----------");
-
 			}
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
 		return idpaciente;
+	}
+	
+	/** LISTAR TODOS OS PROFISSIONAIS CADASTRADOS NO BD **/
+	public List<PacienteBean> listPaciente() {
+		List<PacienteBean> pacientes = new ArrayList<>();
+		String read = "SELECT paciente.cod_paciente, paciente.nome AS \"nome\" FROM paciente";
+		try (Connection connection = conectar();
+				PreparedStatement preparedStatement = connection.prepareStatement(read)) {
+			ResultSet rs = preparedStatement.executeQuery();
+			while (rs.next()) {
+				int id = rs.getInt("cod_paciente");
+				String nome = rs.getString("nome");
+				pacientes.add(new PacienteBean(id, nome, null, nome, nome, nome, nome, nome));
+				System.out.println("=========");
+				System.out.println(id);
+				System.out.println(nome);
+			}
+		} catch (SQLException e) {
+			System.out.println(e);
+		}
+		return pacientes;
 	}
 
 	/** CRUD CREATE **/
@@ -186,6 +228,7 @@ public class AvaliacaoDAO {
 			pst.setString(2, avaliacao.getFicha_avaliacao());			
 			pst.setInt(3, avaliacao.getCod_paciente());
 			pst.setInt(4, avaliacao.getCod_fisioterapeuta());
+			pst.setInt(5, avaliacao.getCod_avaliacao());
 			pst.executeUpdate();
 			con.close();
 		} catch (Exception e) {

@@ -88,7 +88,7 @@ $(document).ready(function(){
 						<h2><b>Avaliações</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="marcarConsultas.jsp" class="btn btn-success"><i class="material-icons">&#xE147;</i><span>Adicionar avaliação</span></a>
+						<a href="newAvaliacao" class="btn btn-success"><i class="material-icons">&#xE147;</i><span>Adicionar avaliação</span></a>
 						</div>
 				</div>
 			</div>

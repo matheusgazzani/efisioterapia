@@ -29,7 +29,7 @@ public class PacienteServlet extends HttpServlet {
 	// CRIAÇÃO DO OBJETO PACIENTE
 	// ACESSAR OS MÉTODOS PÚBLICOS DA CLASSE
 	PacienteDAO dao = new PacienteDAO();
-	PacienteBean paciente = new PacienteBean();
+	PacienteBean paciente = new PacienteBean(null, null, null, null, null, null, null, null);
 
 	public PacienteServlet() {
 		super();

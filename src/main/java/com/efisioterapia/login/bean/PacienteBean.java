@@ -15,10 +15,6 @@ public class PacienteBean {
 	private String cpf;
 	private String telefone;
 	
-	public PacienteBean() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	
 	public PacienteBean(Integer cod_paciente, String nome, Date dt_nascimento, String email, String profissao,
 			String sexo, String cpf, String telefone) {
@@ -81,6 +77,15 @@ public class PacienteBean {
 	}
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "PacienteBean [cod_paciente=" + cod_paciente + ", nome=" + nome + ", dt_nascimento=" + dt_nascimento
+				+ ", email=" + email + ", profissao=" + profissao + ", sexo=" + sexo + ", cpf=" + cpf + ", telefone="
+				+ telefone + "]";
+	}
+	
+	
 	
 }
