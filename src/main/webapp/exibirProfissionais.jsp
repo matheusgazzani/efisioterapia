@@ -90,11 +90,11 @@ body {
 					<div class="row">
 						<div class="col-sm-6">
 							<h2>
-								<b>Profissionais</b>
+								<b>Fisioterapeutas</b>
 							</h2>
 						</div>
 						<div class="col-sm-6">
-							<a href="cadastrarProfissional.jsp" class="btn btn-success"><i class="material-icons">&#xE147;</i><span>Adicionar novo profissional</span></a>
+							<a href="cadastrarProfissional.jsp" class="btn btn-success"><i class="material-icons">&#xE147;</i><span>Adicionar fisioterapeuta</span></a>
 						</div>
 					</div>
 				</div>

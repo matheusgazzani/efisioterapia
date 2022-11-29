@@ -42,10 +42,32 @@ $(document).ready(function(){
 });
 </script>
 <style>
-<%@include file="css/sessoes.css"%>	
+body {
+	  background-image: url('https://www.alexdecarvalho.com.br/fr/wp-content/uploads/2014/09/clean-white-polygon-backgrounds-81.jpg');
+	}
+<%@include file="css/cadastrarServicos.css"%>	
 </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-xl navbar-light bg-light">
+		<a href="painel.jsp" class="navbar-brand"><i class="fa fa-user-md"></i>e-<b>Fisioterapia</b></a>
+		<button type="button" class="navbar-toggler" data-toggle="collapse"
+			data-target="#navbarCollapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="navbar-nav ml-auto">
+			<div class="nav-item dropdown">
+				<a href="#" data-toggle="dropdown"
+					class="nav-link dropdown-toggle user-action"><img
+					src="https://cdn-icons-png.flaticon.com/512/64/64572.png"
+					width="25" height="40" class="avatar" alt="Avatar"> matheusgazzani <b class="caret"></b></a>
+				<div class="dropdown-menu">
+					<a href="index.jsp" class="dropdown-item"><i class="material-icons"></i>Sair</a></a>
+				</div>
+			</div>
+		</div>
+	</nav>
     <div class="container-lg">
         <div class="table-responsive">
             <div class="table-wrapper">			
@@ -58,7 +80,6 @@ $(document).ready(function(){
                             <div class="search-box">
                                 <div class="input-group">								
                                     <input type="text" id="search" class="form-control" placeholder="Procurar por nome">
-                                    <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
                                 </div>
                             </div>
                         </div>

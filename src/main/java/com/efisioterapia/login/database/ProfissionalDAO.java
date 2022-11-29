@@ -75,7 +75,7 @@ public class ProfissionalDAO {
 		ArrayList<ProfissionalBean> profissionais = new ArrayList<>();
 		// VARIÁVEL QUE ARMAZENARÁ A QUERY SQL
 		// SELECT * FROM DE UMA VIEW
-		String read = "SELECT * FROM v_lista_profissionais";
+		String read = "SELECT * FROM fisioterapeuta ORDER BY Nome";
 		try {
 			// ABRIR CONEXÃO COM O BANCO DE DADOS
 			Connection con = conectar();

@@ -65,7 +65,7 @@ public class AvaliacaoDAO {
 		}
 		return idprofissional;
 	}
-	
+
 	/** LISTAR TODOS OS PROFISSIONAIS CADASTRADOS NO BD **/
 	public List<ProfissionalBean> listProfissional() {
 		List<ProfissionalBean> profissionais = new ArrayList<>();
@@ -104,7 +104,7 @@ public class AvaliacaoDAO {
 		}
 		return idpaciente;
 	}
-	
+
 	/** LISTAR TODOS OS PROFISSIONAIS CADASTRADOS NO BD **/
 	public List<PacienteBean> listPaciente() {
 		List<PacienteBean> pacientes = new ArrayList<>();
@@ -157,10 +157,11 @@ public class AvaliacaoDAO {
 		// CONSULTA FEITA NA MÃO
 		// FUTURAMENTE ADICIONAR UMA VIEW
 		String read = "SELECT Avaliacao.Cod_Avaliacao AS \"ID\", Fisioterapeuta.Nome AS \"FISIOTERAPEUTA\", Paciente.Nome AS \"PACIENTE\",\r\n"
-				+ "        Avaliacao.Ficha_Avaliacao AS \"AVALIAÇÃO\", Avaliacao.Dt_Avaliacao AS \"DATA\"\r\n"
-				+ "    FROM Fisioterapeuta, Paciente, Avaliacao\r\n"
-				+ "    WHERE Paciente.Cod_Paciente = Avaliacao.Cod_Paciente\r\n"
-				+ "    AND Fisioterapeuta.Cod_Fisioterapeuta = Avaliacao.Cod_Fisioterapeuta";
+				+ "Avaliacao.Ficha_Avaliacao AS \"AVALIAÇÃO\", Avaliacao.Dt_Avaliacao AS \"DATA\"\r\n"
+				+ "FROM Fisioterapeuta, Paciente, Avaliacao\r\n"
+				+ "WHERE Paciente.Cod_Paciente = Avaliacao.Cod_Paciente\r\n"
+				+ "AND Fisioterapeuta.Cod_Fisioterapeuta = Avaliacao.Cod_Fisioterapeuta\r\n"
+				+ "ORDER BY \"PACIENTE\", \"FISIOTERAPEUTA\"";
 		try {
 			// ABRIR CONEXÃO COM O BANCO DE DADOS
 			Connection con = conectar();
@@ -188,9 +189,10 @@ public class AvaliacaoDAO {
 			return null;
 		}
 	}
-	
+
 	/**
-	/** CRUD UPDATE | EDITAR **/
+	 * /** CRUD UPDATE | EDITAR
+	 **/
 	// SELECIONAR AVALIAÇÃO
 	public void selecionarAvaliacao(AvaliacaoBean avaliacao) {
 		String read2 = "SELECT avaliacao.cod_avaliacao, avaliacao.dt_avaliacao, avaliacao.ficha_avaliacao, fisioterapeuta.nome, paciente.nome FROM Avaliacao, Fisioterapeuta, Paciente \r\n"
@@ -215,7 +217,7 @@ public class AvaliacaoDAO {
 			System.out.println(e);
 		}
 	}
-	
+
 	/** EDITAR AVALIAÇÃO **/
 	/** SALVAR AVALIAÇÃO **/
 	public void alterarAvaliacao(AvaliacaoBean avaliacao) {
@@ -225,7 +227,7 @@ public class AvaliacaoDAO {
 			PreparedStatement pst = con.prepareStatement(create);
 			java.sql.Date data = new java.sql.Date(avaliacao.getDt_avaliacao().getTime());
 			pst.setDate(1, data);
-			pst.setString(2, avaliacao.getFicha_avaliacao());			
+			pst.setString(2, avaliacao.getFicha_avaliacao());
 			pst.setInt(3, avaliacao.getCod_paciente());
 			pst.setInt(4, avaliacao.getCod_fisioterapeuta());
 			pst.setInt(5, avaliacao.getCod_avaliacao());
@@ -235,7 +237,7 @@ public class AvaliacaoDAO {
 			System.out.println(e);
 		}
 	}
-	
+
 	// EDITAR AVALIAÇÃO
 	public void alterarProfissional(ProfissionalBean profissional) {
 		String create = "UPDATE fisioterapeuta SET Nome=?,Telefone=?,DT_Nascimento=?,Email=?,Sexo=?,CREFITO=?,Especialidade=?,CPF=? WHERE cod_fisioterapeuta = ?";
@@ -258,7 +260,7 @@ public class AvaliacaoDAO {
 			System.out.println(e);
 		}
 	}
-	
+
 	/** CRUD DELETE **/
 	public void deletarAvaliacao(AvaliacaoBean avaliacao) {
 		String delete = "DELETE FROM avaliacao WHERE cod_avaliacao = ?;";

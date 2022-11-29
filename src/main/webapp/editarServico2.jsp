@@ -41,7 +41,7 @@ ArrayList<ProfissionalBean> lista = (ArrayList<ProfissionalBean>) request.getAtt
                 <h3 class="login-heading mb-4">Editar serviço</h3>
                 <h6>Prezado(a), preencha corretamente todos os campos para editar um serviço.</h6>
                 <div class="form-floating mb-3">
-                    <input readonly class="form-control" name="cod_servico" value="<%out.print(request.getAttribute("cod_servico"));%>">
+                    <input disabled class="form-control" name="cod_servico" value="<%out.print(request.getAttribute("cod_servico"));%>">
                     <label for="floatingInput">ID</label>
                   </div>
                   <div class="form-floating mb-3">
@@ -58,7 +58,7 @@ ArrayList<ProfissionalBean> lista = (ArrayList<ProfissionalBean>) request.getAtt
                   </div>
                   <div class="form-floating mb-3">
                    	<input disabled class="form-control" name="nome_fisioterapeuta" value="<%out.print(request.getAttribute("nome_fisioterapeuta"));%>"> 
-                    <label for="floatingInput">Profissional</label>
+                    <label for="floatingInput">Fisioterapeuta</label>
                   </div>                  <div class="d-grid">
                   <div class="form-floating mb-3">
                     <select class="form-control" name="nome_fisioterapeuta">

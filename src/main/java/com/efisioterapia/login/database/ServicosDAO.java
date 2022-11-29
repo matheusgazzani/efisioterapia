@@ -130,9 +130,10 @@ public class ServicosDAO {
 		// CRIANDO OBJETO PARA ACESSAR A CLASSE 'ServicoBean'
 		ArrayList<ServicoBean> servicos = new ArrayList<>();
 		// VARIÁVEL QUE ARMAZENARÁ A QUERY SQL
-		String read = "SELECT servico.cod_servico, servico.nome,servico.valor, servico.descricao, fisioterapeuta.nome\r\n"
-				+ "    FROM Servico, Fisioterapeuta\r\n"
-				+ "    WHERE Servico.cod_fisioterapeuta = Fisioterapeuta.Cod_Fisioterapeuta";
+		String read = "SELECT servico.cod_servico, servico.nome AS \"NOME_SERVICO\",servico.valor, servico.descricao, fisioterapeuta.nome\r\n"
+				+ "FROM Servico, Fisioterapeuta\r\n"
+				+ "WHERE Servico.cod_fisioterapeuta = Fisioterapeuta.Cod_Fisioterapeuta\r\n"
+				+ "ORDER BY \"NOME_SERVICO\"";
 		try {
 			// ABRIR CONEXÃO COM O BANCO DE DADOS
 			Connection con = conectar();

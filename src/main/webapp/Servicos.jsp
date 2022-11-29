@@ -80,7 +80,7 @@ body {
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>Serviços</b></h2>
+						<h2><b>Serviços</b></h2>
 					</div>
 					<div class="col-sm-6">
 						<a href="newservico" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar Serviço</span></a>
@@ -94,7 +94,7 @@ body {
 						<th>Serviço</th>
 						<th>Valor R$</th>
                         <th>Descrição</th>
-						<th>Profissional</th>
+						<th>Fisioterapeuta</th>
 						<th>Ações</th>
 					</tr>
 				</thead>

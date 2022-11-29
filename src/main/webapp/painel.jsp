@@ -59,7 +59,7 @@ body {
 					<div class="box">
 						<img src="https://cdn-icons-png.flaticon.com/512/3755/3755781.png"
 							width="80" height="110"></img>
-						<h3 class="name">Profissionais</h3>
+						<h3 class="name">Fisioterapeutas</h3>
 						<a href="profissional" type="button" class="btn btn-light">Acessar</a>
 					</div>
 				</div>
